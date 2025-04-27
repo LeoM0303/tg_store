@@ -11,7 +11,7 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start_cmd(message: types.Message):
-    await message.answer("Hello world")
+    await message.answer("Hi, dear user")
 
 @dp.message()
 async def echo(message: types.Message):
@@ -19,6 +19,7 @@ async def echo(message: types.Message):
 
 
 async def main():
+    await bot.delete_webhook(drop_pending_updates=True) #work with server URL
     await dp.start_polling(bot)
 
 
