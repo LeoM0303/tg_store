@@ -15,7 +15,7 @@ async def start_cmd(message: types.Message):
 
 @dp.message()
 async def echo(message: types.Message):
-    await message.answer(message.text)
+    await message.reply(message.text)
 
 
 async def main():
