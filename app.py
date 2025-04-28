@@ -13,18 +13,9 @@ load_dotenv(find_dotenv())
 #cons part
 ALLOWED_UPDATES = ['message, edited_message']
 
-
 #main part
 bot = Bot(token=os.getenv('TOKEN'))
 dp = Dispatcher()
-
-@dp.message(CommandStart())
-async def start_cmd(message: types.Message):
-    await message.answer("Hi, dear user")
-
-@dp.message()
-async def echo(message: types.Message):
-    await message.reply(message.text)
 
 
 async def main():
