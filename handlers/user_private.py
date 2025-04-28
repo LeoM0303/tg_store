@@ -1,5 +1,5 @@
 from aiogram import types, Router
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 
 user_private_router = Router()
 
@@ -7,7 +7,20 @@ user_private_router = Router()
 async def start_cmd(message: types.Message):
     await message.answer("Hi, dear user")
 
-@user_private_router.message()
-async def echo(message: types.Message):
-    await message.reply(message.text)
+@user_private_router.message(Command('menu'))
+async def menu_cmd(message: types.Message):
+    await message.reply('Menu: ')
 
+@user_private_router.message(Command('about'))
+async def menu_cmd(message: types.Message):
+    await message.reply('About: ')
+
+
+@user_private_router.message(Command('products'))
+async def menu_cmd(message: types.Message):
+    await message.reply('Products: ')
+
+
+@user_private_router.message(Command('support'))
+async def menu_cmd(message: types.Message):
+    await message.reply('Support: ')
