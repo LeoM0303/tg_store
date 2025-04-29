@@ -26,7 +26,7 @@ dp.include_routers(user_private_router)
 async def main():
     await bot.delete_webhook(drop_pending_updates=True) #work with server URL
     await bot.set_my_commands(commands=private, scope=types.BotCommandScopeAllPrivateChats())
-    # await bot.delete_my_commands(scope=types.BotCommandScopeAllPrivateChats())
+    # await bot.delete_my_commands(scope=types.BotCommandScopeAllPrivateChats()) command for deleting menu
     await dp.start_polling(bot, allowed_updates=ALLOWED_UPDATES)
 
 

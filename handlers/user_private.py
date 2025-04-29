@@ -1,4 +1,4 @@
-from aiogram import types, Router
+from aiogram import F, types, Router
 from aiogram.filters import CommandStart, Command
 
 user_private_router = Router()
@@ -11,16 +11,26 @@ async def start_cmd(message: types.Message):
 async def menu_cmd(message: types.Message):
     await message.reply('Menu: ')
 
-@user_private_router.message(Command('about'))
-async def menu_cmd(message: types.Message):
-    await message.reply('About: ')
-
-
-@user_private_router.message(Command('products'))
-async def menu_cmd(message: types.Message):
+@user_private_router.message(Command('prod'))
+async def prod_cmd(message: types.Message):
     await message.reply('Products: ')
 
 
-@user_private_router.message(Command('support'))
-async def menu_cmd(message: types.Message):
-    await message.reply('Support: ')
+@user_private_router.message(Command('payment'))
+async def payment_cmd(message: types.Message):
+    await message.reply('Payment: ')
+
+
+#magic filter
+@user_private_router.message(F.text)
+async def payment_cmd(message: types.Message):
+    await message.reply('Work magic filter ')
+
+@user_private_router.message(F.photo)
+async def payment_cmd(message: types.Message):
+    await message.reply('Work magic filter on photo')
+
+@user_private_router.message(F.audio)
+async def payment_cmd(message: types.Message):
+    await message.reply('Work magic filter on photo')
+
