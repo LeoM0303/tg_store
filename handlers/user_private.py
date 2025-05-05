@@ -23,6 +23,11 @@ async def payment_cmd(message: types.Message):
 
 
 #magic filter
+@user_private_router.message(F.text.contains(''))
+async def payment_cmd(message: types.Message):
+    await message.reply('Nope')
+
+
 @user_private_router.message(F.text.lower() == 'apple')
 async def payment_cmd(message: types.Message):
     await message.reply("Right now, we haven't apple production")
