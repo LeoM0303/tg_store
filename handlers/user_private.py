@@ -1,5 +1,5 @@
 from aiogram import F, types, Router
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, or_f
 
 user_private_router = Router()
 
@@ -9,18 +9,15 @@ user_private_router = Router()
 async def start_cmd(message: types.Message):
     await message.answer("Hi, dear user")
 
-@user_private_router.message(F.text.lower().contains('menu') | (F.text.lower() == 'menus'))
-@user_private_router.message(Command('menu'))
+@user_private_router.message(or_f(Command('menu'), (F.text.lower() == 'menu')))
 async def menu_cmd(message: types.Message):
     await message.reply('Menu: ')
 
-@user_private_router.message(F.text.lower().contains('prod') | (F.text.lower() == 'product'))
-@user_private_router.message(Command('prod'))
+@user_private_router.message(or_f(Command('prod'), (F.text.lower() == 'product')))
 async def prod_cmd(message: types.Message):
     await message.reply('Products: ')
 
-@user_private_router.message(F.text.lower().contains('delivery') | (F.text.lower() == 'delivery point'))
-@user_private_router.message(Command('payment'))
+@user_private_router.message(or_f(Command('payment'), (F.text.lower() == 'delivery point')))
 async def payment_cmd(message: types.Message):
     await message.reply('We work for this: ')
 
