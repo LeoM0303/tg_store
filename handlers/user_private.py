@@ -4,30 +4,28 @@ from aiogram.filters import CommandStart, Command
 user_private_router = Router()
 
 #main commands
+@user_private_router.message(F.text.lower().contains('hello') | (F.text.lower() == 'hey'))
 @user_private_router.message(CommandStart())
 async def start_cmd(message: types.Message):
     await message.answer("Hi, dear user")
 
+@user_private_router.message(F.text.lower().contains('menu') | (F.text.lower() == 'menus'))
 @user_private_router.message(Command('menu'))
 async def menu_cmd(message: types.Message):
     await message.reply('Menu: ')
 
+@user_private_router.message(F.text.lower().contains('prod') | (F.text.lower() == 'product'))
 @user_private_router.message(Command('prod'))
 async def prod_cmd(message: types.Message):
     await message.reply('Products: ')
 
-
+@user_private_router.message(F.text.lower().contains('delivery') | (F.text.lower() == 'delivery point'))
 @user_private_router.message(Command('payment'))
 async def payment_cmd(message: types.Message):
-    await message.reply('Payment: ')
+    await message.reply('We work for this: ')
 
 
 #magic filter
-@user_private_router.message(F.text.lower().contains('delivery') | (F.text.lower() == 'delivery point'))
-async def payment_cmd(message: types.Message):
-    await message.reply('We work for this')
-
-
 @user_private_router.message(F.text.lower() == 'apple')
 async def payment_cmd(message: types.Message):
     await message.reply("Right now, we haven't apple production")
@@ -43,4 +41,3 @@ async def payment_cmd(message: types.Message):
 @user_private_router.message(F.audio)
 async def payment_cmd(message: types.Message):
     await message.reply('Work magic filter on photo')
-
