@@ -23,9 +23,9 @@ async def payment_cmd(message: types.Message):
 
 
 #magic filter
-@user_private_router.message(F.text.contains(''))
+@user_private_router.message(F.text.lower().contains('delivery') | (F.text.lower() == 'delivery point'))
 async def payment_cmd(message: types.Message):
-    await message.reply('Nope')
+    await message.reply('We work for this')
 
 
 @user_private_router.message(F.text.lower() == 'apple')
