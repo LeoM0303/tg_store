@@ -7,6 +7,7 @@ import os
 from aiogram import Bot, Dispatcher, types
 from dotenv import find_dotenv, load_dotenv
 
+
 load_dotenv(find_dotenv())
 
 #imports from file
@@ -15,13 +16,15 @@ from command.bot_command_list import private
 
 
 #cons part
-ALLOWED_UPDATES = ['message, edited_message']
+ALLOWED_UPDATES = ['message', 'edited_message']
 
 #main part
 bot = Bot(token=os.getenv('TOKEN'))
 dp = Dispatcher()
 
+#include router
 dp.include_routers(user_private_router)
+
 
 async def main():
     await bot.delete_webhook(drop_pending_updates=True) #work with server URL
