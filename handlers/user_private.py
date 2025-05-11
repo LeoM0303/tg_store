@@ -1,7 +1,10 @@
-from aiogram import F, types, Router
+from aiogram import  F, types, Router
 from aiogram.filters import CommandStart, Command, or_f
+from filters.chat_types import ChatTypeFilter
+
 
 user_private_router = Router()
+user_private_router.message.filter(ChatTypeFilter(['private']))
 
 #main commands
 @user_private_router.message(F.text.lower().contains('hello') | (F.text.lower() == 'hey'))

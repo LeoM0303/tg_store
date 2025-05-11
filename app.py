@@ -12,6 +12,7 @@ load_dotenv(find_dotenv())
 
 #imports from file
 from handlers.user_private import user_private_router
+from handlers.user_group import user_group_router
 from command.bot_command_list import private
 
 
@@ -24,7 +25,7 @@ dp = Dispatcher()
 
 #include router
 dp.include_routers(user_private_router)
-
+dp.include_routers(user_group_router)
 
 async def main():
     await bot.delete_webhook(drop_pending_updates=True) #work with server URL
